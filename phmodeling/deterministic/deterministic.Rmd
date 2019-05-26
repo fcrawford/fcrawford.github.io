@@ -1,0 +1,314 @@
+---
+title: "Deterministic models"
+author: "Forrest W. Crawford"
+output:
+  beamer_presentation: 
+    slide_level: 2
+    toc: true
+  html_document:
+    toc: yes
+    toc_depth: 4
+    toc_float:
+      collapsed: FALSE
+      smooth_scroll: TRUE
+    code_folding: hide
+    highlight: haddock
+    number_sections: FALSE
+    df_print: kable
+bibliography: ../phmodeling.bib
+---
+
+
+# Deterministic models
+
+1. Structural equation models 
+2. Ordinary differential equaiton models
+3. ODE solvers 
+
+
+We will use examples from @brauer2001mathematical. 
+
+The focus here will _not_ be on solving ODE systems analytically. There is a huge literature on this, but it's beyond the scope of the course.  We will also not focus on qualitative dynamics and equilibrium analysis of DE systems. Instead, we will focus on specification and construction of systems, and using a computer to solve them numerically. 
+
+
+## Structural equation and mathematical models 
+
+
+
+
+## ODE models 
+
+ordinary differential equations (autonomous)
+
+
+mass action  
+
+
+---
+
+## The most boring model
+
+Consider the most boring model for a quantity $y(t)$
+$$ 
+\frac{dy}{dt} = \lambda 
+$$
+with initial condition $y(0)=y_0$. 
+
+What function of $t$ has slope $\lambda$ for every $t$?  The straight line  
+$$ y(t) = y_0 + \lambda t $$
+
+---
+
+
+### Birth process
+
+Recall the basic birth process, where the rate of growth in $y(t)$ is proportional to $y(t)$ itself,
+$$ 
+\frac{dy}{dt} = \lambda y(t)
+$$
+with initial condition $y(0)=y_0$, which has solution 
+$$ y(t) = y_0 e^{\lambda t} $$
+and $y(t)$ increases "exponentially". 
+
+
+---
+
+### Death process 
+
+The "death" process is the same, but we let $\lambda=-\mu<0$. Then 
+$$ 
+\frac{dy}{dt} = -\mu y(t)
+$$
+with initial condition $y(0)=y_0$, which has solution 
+$$ y(t) = y_0 e^{-\mu t} $$
+and $y(t)$ decreases "exponentially" to zero. 
+
+---
+
+## Logistic growth I
+
+Recall the exponential growth model
+$$ \frac{dy}{dt} = \lambda y(t) $$
+with initial condition $y(0)=y_0$.  Its solution is $y(t) = y_0 e^{\lambda t}$. 
+As $t\to\infty$, $y(t)\to\infty$.  This unbounded growth may be unrealistic due to resource constraints. 
+
+Suppose $K$ is the "carrying capacity" of the medium, and $\lambda$ is the intrinsic gowth rate as above.  Consider the model 
+$$ \frac{dy}{dt} = \lambda y(t)\left( 1 - \frac{y(t)}{K}\right)  $$
+with initial condition $y(0) = y_0$. 
+
+---
+
+## Logistic growth II
+
+Recall
+
+$$ \frac{dy}{dt} = \lambda y(t)\left( 1 - \frac{y(t)}{K}\right)  $$
+
+When is $dy/dt=0$? When either $y(t)=0$ or $y(t)=K$. 
+
+- If $y(t) < K$, then $dy/dt>0$ and the population size increases.  
+- If $y(t)>K$ then $dy/dt<0$ and the population size decreases. 
+
+The solution can be written down precisely: 
+$$ y(t) = \frac{K y_0}{y_0 + (K-y_0)e^{-\lambda t}} $$ 
+
+---
+
+```{r} 
+ts = seq(0,10,by=0.01)
+lam = 0.5
+K = 0.8
+y0s = c(0.05, 0.2,0.5,1)
+plot(0,
+		 type="n", 
+		 xlim=range(ts), 
+		 ylim=c(0,1), 
+		 ylab="Number of bacteria y(t)", 
+     xlab="Time t",
+     bty="n")
+text(10, K, "K=0.8", pos=3)
+abline(h=K, lty="dashed", col="gray")
+for(y0 in y0s) {
+  ys = K * y0 / (y0 + (K-y0)*exp(-lam*ts))
+  lines(ts, ys)
+  text(1,ys[100], bquote(y[0] == .(y0)), pos=1) 
+}
+
+```
+
+---
+
+### Logistic growth: SI model 
+
+Consider a population of $N$ individuals where every individual is _susceptible_ or _infected_ with an infectious disease. Let $S(t)$ be the number of susceptibles,  and let $I(t)$ be the number of infectives. Then the system is characterized by 
+$$ \frac{dI}{dt} = \beta S(t) I(t) $$
+where $N = S(t) + I(t)$. We can rewrite as  
+$$ \frac{dI}{dt} = \beta I(t)(N-I(t)) $$
+where initially we have $I(0)=i_0$ infectives.  The carrying capacity is $K=N$ and $\lambda=\beta$ and $y_0=I(0)$ above. 
+
+---
+
+## SIR model
+
+Consider a population of $N$ individuals where every individual is _susceptible_ or _infected_ or _recovered_. Let $S(t)$ be the number of susceptibles, $I(t)$ be the number of infectives, $R(t)$ the number of recovered. Then the system is characterized by 
+
+$$ \frac{dS}{dt} = -\beta S(t) I(t) $$
+$$ \frac{dI}{dt} = \beta S(t) I(t) - \gamma I(t) $$
+$$ \frac{dR}{dt} = \gamma I(t) $$
+
+with initial condition $S_0$, $I(0)$, $R(0)$ and conservation equation $S(t)+I(t)+R(t)=N$.  This system does not have a solution that is easy to write down, but it is easy to understand!   
+
+---
+
+## Lotka-Volterra predator-prey dynamics
+
+Let $x(t)$ be the number of prey, and let $y(t)$ be the number of predators. 
+
+- Having abundant food, prey reproduce naturally in proportion ($\alpha$) to their number 
+- Prey die (are eaten) in proportion ($\beta)$ to the product of their abundance and the number of predators 
+- Predators reproduce in proportion ($\delta$) to the product of their number and the number of prey they can eat
+- Predators die in proportion to their number  
+
+$$ \frac{dx}{dt} = \alpha x(t) - \beta x(t) y(t) $$
+$$ \frac{dy}{dt} = \delta x(t) y(t) - \gamma y(t) $$
+with initial conditions $x(0)$ and $y(0)$. 
+
+---
+
+## Pharmacokinetic models 
+
+
+http://sia.webpopix.org/pharmacokinetics.html
+https://www.math.psu.edu/treluga/textbook/linear_odes.html
+
+
+---
+
+## ODE systems
+
+many compartments, harder to solve analytically. 
+
+
+---
+
+## ODE solvers
+
+Lots of ODEs can't be solved analytically.  For (well-behaved) systems that have a unique solution, it is often possible to solve for $y(t)$ numerically, without having any calculus-style analytic insight into the structure of the solution.  There are very fast computer algorithms for doing this.  
+
+We will focus on methods implemented in standard software packages. 
+
+---
+
+## SIR solution 
+
+
+```{r}
+library(deSolve)
+sir.model <- function (t, x, params) { 
+  S <- x[1] 
+  I <- x[2] 
+  R <- x[3] 
+  with( as.list(params), { 
+    dS <- -beta*S*I
+    dI <- beta*S*I-gamma*I
+    dR <- gamma*I
+    dx <- c(dS,dI,dR) 
+    list(dx) 
+  })}
+
+  times <- seq(0,120,by=1)
+  params <- c(beta=0.4,gamma=1/7)
+  xstart <- c(S=9999/10000,I=1/10000,R=0)
+  out <- as.data.frame( lsoda(xstart, times, sir.model, params) )
+  plot(out$time, out$I, ylab="Population proportion", xlab="Time", 
+       type='l', bty="n", ylim=c(0,1), col="red") 
+  lines(out$time, out$S, col="green")
+  lines(out$time, out$R, col="blue")
+  legend(100,0.5, c("S(t)", "I(t)", "R(t)"), lty=1, col=c("green", "red", "blue"))
+```
+
+---
+
+
+## Lotka-Volterra solution 
+
+```{r}
+library(deSolve)
+lv.model <- function (t, x, params) { 
+  X <- x[1] 
+  Y <- x[2] 
+  with( as.list(params), { 
+    dX <- alpha*X - beta*X*Y
+    dY <- delta*X*Y - gamma*Y
+    dx = c(dX,dY)
+    list(dx) 
+  })}
+
+  times <- seq(0,120,by=1)
+  params <- c(alpha=1.1,beta=0.4,delta=0.1,gamma=0.4)
+  xstart <- c(X=0.5,Y=0.6)
+  out <- as.data.frame( lsoda(xstart, times, lv.model, params) )
+  plot(out$time, out$X, ylab="Population proportion", xlab="Time", 
+       type='l', bty="n", col="red") 
+  lines(out$time, out$Y, col="blue")
+  legend(100,0.9*max(out$X)), c("X(t)", "Y(t)"), lty=1, col=c("red", "blue"))
+```
+
+
+---
+
+## Our general-purpose ODE solver
+
+Explain `lsoda`
+
+see also example in lsoda help page for Lotka-Volterra system
+Runge-Kutta methods and RK4. 
+
+DEsolve:
+https://daphnia.ecology.uga.edu/drakelab/wp-content/uploads/2014/07/deterministic-models.pdf
+
+---
+
+## How to model ODEs
+
+Left-hand side: derivatives of the things that you want to change
+
+Right-hand side: the rates of change 
+
+Example: constructing SIR dynamics 
+
+ODEs are most interesting when there are interactions between compartments. 
+
+---
+
+## More sophisticated models 
+
+Vital dynamics/demography
+more health/disease states
+age structure 
+seasonal forcing
+
+---
+
+# A brief caveat
+
+Wronskian, and ODE systems with well-defined solutions 
+
+
+---
+
+
+[[Back: Introduction to Modeling]](../deterministic/intro/intro.html)
+[[Home]](../index.html)
+[[Next: Stochastic models]](../stochastic/stochastic.html)
+
+---
+
+
+## References 
+
+
+
+
+
+

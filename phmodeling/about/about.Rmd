@@ -1,0 +1,98 @@
+---
+title: "About this course"
+author: "Forrest W. Crawford"
+output:
+  beamer_presentation: 
+    slide_level: 2
+    toc: true
+  html_document:
+    toc: yes
+    toc_depth: 4
+    toc_float:
+      collapsed: FALSE
+      smooth_scroll: TRUE
+    code_folding: hide
+    highlight: haddock
+    number_sections: FALSE
+    df_print: kable
+bibliography: ../phmodeling.bib
+---
+
+
+# Why we are teaching this course
+
+The Yale School of Public HealthYSPH is offering this course to bring the benefits of formal modeling to you: researchers, students, professionals, and practitioners.  Our goal is dissemination of this knowledge to the people who need it is the goal of this course. 
+
+For those of you who want to, and have the technical background, we want to give you the basic tools to begin constructing models of the things you care about, and reason using evidence generated from those models.  
+
+For those who don't want to build your own models, we want you to become informed consumers about evidence generated from models.  
+
+---
+
+## What we want from you 
+
+This year is the first time we have offered this course, so we developed the course materials to be unique and useful in our view -- hopefully you agree! 
+
+Our intention is to give you the best 3 days possible.  
+
+- Where we succeed, we hope you will bring this info back into your world  
+- Where we fail, we sincerely hope you will tell us so we can improve the course  
+
+---
+
+## What this course is not
+
+We want to emphasize that the course is not designed or intended to teach you things that take years of coursework.  It's not 
+
+- a math class,
+- a statistics/data analysis class, or
+- a health economics class. 
+
+We will use some mathematical notation.  Maybe a bit of algebra.  But this course will largely not require any analytical tools beyond comprehension of this formalism. 
+
+---
+
+## Textbooks and further resources 
+
+There is no official reference book for this course, aside from these notes.  However, we do recommend some books.  You will find cited references to textbooks and academic articles at the end of each section of course notes.  
+
+The course instructors are always happy to point you to additional resources. 
+
+---
+
+
+## Meta I
+
+These course notes/slides were generated from RMarkdown and Knitr (@xie2018r).  The course notes are available as [PDF handouts](phmodeling_handout.pdf) or HTML web pages.  The source markup and code is available at: 
+
+https://github.com/fcrawford/phmodeling
+
+The PDF slides and handouts are generated using the LaTeX Beamer template and combined using `pdfjam`. 
+
+---
+
+## Meta II
+
+The design of the RMarkdown course notes was strongly influenced by [Aaron King](https://kingaa.github.io)'s course on Simulation-based Inference for Epidemiological Dynamics: 
+
+https://kingaa.github.io/sbied/
+
+with source markup and code here: 
+
+https://github.com/kingaa/sbied
+
+We have designed the course materials to be simple and reproducible.  I hope you are not disappointed with the austerity of the slides -- all the good stuff is in there! 
+
+---
+
+[[Back: Welcome]](../index.html)
+[[Home]](../index.html)
+[[Next: Introduction to Public Health Modeling]](../intro/intro.html)
+
+---
+
+## References 
+
+
+
+

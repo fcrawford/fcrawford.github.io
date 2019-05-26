@@ -1,0 +1,164 @@
+---
+title: "Fitting models"
+author: "Forrest W. Crawford"
+output:
+  beamer_presentation: 
+    slide_level: 2
+    toc: true
+  html_document:
+    toc: yes
+    toc_depth: 4
+    toc_float:
+      collapsed: FALSE
+      smooth_scroll: TRUE
+    code_folding: hide
+    highlight: haddock
+    number_sections: FALSE
+    df_print: kable
+bibliography: ../phmodeling.bib
+---
+
+
+# Calibration and fitting
+
+Suppose $\hat y_i$, for $i=1,\ldots,n$ are our observations.  
+
+Let the model output with $\theta$ be $y_i(t|\theta)$, pronounced $y_i$ of $t$ given $\theta$. This is the prediction with a specific value of $t$ and $\theta$ plugged in. 
+
+We want to learn about a parameter vector $\theta$.  How should we do this?  By choosing $\theta$ to make the model output $y_i(t_i|theta)$ look like the observed data $\hat y_i$ for times $t_1,\ldots,t_n$.  
+
+What does "look like" mean?  What does it mean for two numbers to be "close together"?  There are many answers to this question, but we will take the simplest one here. 
+
+Notation: in general I will use Greek letters for parameters that we want to calibrate or fit: $\alpha$, $\beta$, $\gamma$, $\theta$, $\epsilon$.   
+
+
+## Fitting deterministic models by least squares 
+
+Consider the general "loss" function
+$$
+ L(\theta) = \sum_{i=1}^n (y(t_i|\theta) - \hat y_i)^2
+$$
+
+This is a sum of differences between the model output $y(t_i|\theta)$ and the observation $\hat y_i$, squared.  Why squared?  Because squaring this difference makes the result positive, and gives larger values to larger deviations. 
+
+We want to make this loss function $L(\theta)$ as small as possible. 
+
+---
+
+## Example 
+
+Example: Suppose we have a SI system characterized by 
+$$
+\frac{dI}{dt} = \beta S(t) I(t)
+$$
+and $N = S(t) + I(t)$ is known.  We observe the number of infectives $I(t)$ at times $0,t_1,\ldots,t_n$.  Call these values $\hat I_1,\ldots,\hat I_n$.  We wish to estimate $\beta$.  The loss function is 
+
+$$ 
+  L(\beta) = \sum_{j=1}^n (\hat I_j - I(t_j,\beta))^2
+$$
+where $I(t_j,\beta)$ is the values of $I(t)$ at $t_j$ using parameter value $\beta$ obtained by numerical solution. The value of $\beta$ that minimizes $L(\beta)$ is our estimate of $\beta$: 
+
+$$
+ \beta = \underset{\beta}{\text{argmin}}\  L(\beta)
+$$
+
+
+---
+
+the first thing to notice is that this loss function is a sum of convex functions [define].  This means it has a unique minimum on a closed set.  This means it is "U"-shaped, and we want to find the value of $\theta$ at the "bottom" of the "U". 
+
+---
+ 
+```{r, echo=FALSE}
+
+I_soln = function(t,beta) {
+  beta*I0*exp(beta * t) / (beta + beta*I0*(exp(beta*t) - 1))
+}
+
+loss = function(I_obs,beta) {
+  sum(( I_soln(ts,beta) - I_obs)^2 )
+}
+
+I0 = 0.01
+bet = 0.6
+ts = seq(1,15,by=0.3)
+Is = I_soln(ts,bet)
+Is_noise = pmax(0,Is + rnorm(length(ts), 0, 0.1))
+
+plot(ts,Is_noise, ylim=c(0,1), ylab=expression(hat(I)(t)), xlab="Time")
+lines(ts,Is)
+legend(1,0.9, c("Data", "Model prediction"), pch=c(1,NA), lty=c(NA,1))
+
+bets = seq(0.01,1, by=0.01)
+loss_values = sapply(bets, function(b)loss(Is_noise,b))
+plot(bets, loss_values, ylab=expression(L(beta)), xlab=expression(beta))
+bet_hat = bets[which.min(loss_values)]
+arrows(bet_hat, (min(loss_values)+max(loss_values))/2, 
+       bet_hat, min(loss_values))
+text(bet_hat, (min(loss_values)+max(loss_values))/2, bet_hat, pos=3)
+
+```
+
+## Fitting deterministic models with statistical error distributions 
+
+Deterministic models produce a single trajectory for model compartments.  But real data are noisy and bumpy.  We can hypothesize a model for how error enters the model output.  For example, some researchers assume that the observed count is a Poisson random variable whose mean is the true compartment value in the deterministic model.  For the $I$ compartment, 
+$$
+  \hat{I}(t) \sim \text{Poisson}(I(t,\beta))
+$$
+
+---
+
+
+Other error distributions can be used as well:
+$$
+  \hat{I}(t) = I(t) + \epsilon_t
+$$
+where 
+$$
+\epsilon_t \sim \text{Normal}(0,\sigma^2_t)
+$$
+
+In these cases, we can use the implied likelihood of the statistical error distribution as our (negative) loss function. 
+
+---
+
+If the errors are assumed independent, then the likelihood is a product over the observations: 
+
+$$ \text{Likelihood}(\theta) = \prod_{i=1}^n f(\hat y_i|\theta) $$
+
+
+---
+
+## Fitting stochastic compartmental models using likelihood methods 
+
+How do we fit?  We want to minimize these functions with respect to the unknown parameters $\theta$.  
+
+When the loss is convex, or the (log-)likelihood is concave, there is a unique value of $\theta$ tha minimizes (maximizes) the objective function.  
+
+When $\theta$ has high dimension, this can be difficult to find even with a computer, but when it's low-dimensional, there are some easy solutions. 
+
+nlm
+
+optim
+
+
+sampling-based solutions
+
+
+Not covered: Bayesian methods
+
+
+### Crash course in gradient descent and Newton-Raphson iteration 
+
+Alternatively just use optim or nlm. 
+
+When your computer is not doing a good job of finding the optimal value of $\theta$, you may have to write an algorithm to do it. 
+
+Here are some fundamental principles. 
+
+
+[navigation]
+
+## References 
+
+
