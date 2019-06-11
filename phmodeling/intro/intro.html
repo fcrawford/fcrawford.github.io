@@ -300,7 +300,7 @@ div.tocify {
 <h2>What is a model?</h2>
 <p>A model is a mathematical relationship that comes with a story. <span class="citation">Stokey and Zeckhauser (1978)</span> give a definition: “A model is a simplified representation of some aspect of the real world, sometimes of an object, sometimes of a situation or a process”.</p>
 <p>A good model reduces a complex situation to a set of essential mechanisms, or dynamics, that an analyst needs in order to make a good decision.</p>
-<p>A bad model mischaracterizes the mechanism of interest, is too simple to capture important dynamics, or is too complicated to be calibrated or understood.</p>
+<p>A bad model mis-characterizes the mechanism of interest, is too simple to capture important dynamics, or is too complicated to be calibrated or understood.</p>
 <p><span class="citation">Basu and Andrews (2013)</span></p>
 <hr />
 </div>
@@ -444,11 +444,8 @@ div.tocify {
 <div id="example-post-mortem" class="section level2">
 <h2>Example: post-mortem</h2>
 <p>Where was the magic step?</p>
-<p><em>A common distributional assumption</em> for positive and zero <span class="math inline">\(X_i\)</span>’s,</p>
-<p><span class="math display">\[ X_i \sim \text{Poisson}(\lambda) \]</span></p>
-<p>This allowed estimation of <span class="math inline">\(\lambda\)</span>, and implies that</p>
-<p><span class="math display">\[ M \sim \text{Binomial}(N,1-e^{-\lambda}) \]</span></p>
-<p>which we can use to estimate <span class="math inline">\(N\)</span>.</p>
+<p><em>A common distributional assumption</em> for positive and zero <span class="math inline">\(X_i\)</span>’s.</p>
+<p>This allowed estimation of <span class="math inline">\(\lambda\)</span>, and implies a probability distribution for <span class="math inline">\(M\)</span>, which we can use to estimate <span class="math inline">\(N\)</span>.</p>
 <p>Some questions:</p>
 <ul>
 <li>What are the weaknesses of this model?<br />
