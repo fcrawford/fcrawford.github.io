@@ -4019,24 +4019,10 @@ div.tocify {
 <p>with initial condition <span class="math inline">\(S_0\)</span>, <span class="math inline">\(I(0)\)</span>, <span class="math inline">\(R(0)\)</span> and conservation equation <span class="math inline">\(S(t)+I(t)+R(t)=N\)</span>.</p>
 <hr />
 </div>
-<div id="sir-model-with-seasonal-forcing" class="section level2">
-<h2>SIR model with seasonal forcing</h2>
-<div id="htmlwidget-781cb17afdbdce6ce78e" style="width:672px;height:50px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-781cb17afdbdce6ce78e">{"x":{"diagram":"digraph rmarkdown {\ngraph[layout = dot, rankdir = LR]\nS\nI\nR\nS -> I -> R\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-<p>Suppose the transmission rate is a function of time, <span class="math inline">\(\beta(t) = a(1 + \sin(b + t/c))\)</span></p>
-<p><span class="math display">\[ \begin{aligned}
-\frac{dS}{dt} &amp;= -\beta(t) S(t) I(t) \\
- \frac{dI}{dt} &amp;= \beta(t) S(t) I(t) - \gamma I(t) \\
- \frac{dR}{dt} &amp;= \gamma I(t) 
- \end{aligned} 
-\]</span></p>
-<p>When might periodicity, or seasonal forcing, be appropriate?</p>
-<hr />
-</div>
 <div id="seir-model" class="section level2">
 <h2>SEIR model</h2>
-<div id="htmlwidget-7d69e8150e631d0439c9" style="width:672px;height:50px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7d69e8150e631d0439c9">{"x":{"diagram":"digraph rmarkdown {\ngraph[layout = dot, rankdir = LR]\nS\nE\nI\nR\nS -> E -> I -> R\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a42684ee26a16682073e" style="width:672px;height:50px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a42684ee26a16682073e">{"x":{"diagram":"digraph rmarkdown {\ngraph[layout = dot, rankdir = LR]\nS\nE\nI\nR\nS -> E -> I -> R\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>Now suppose there is a <em>latent period</em> following infection that delays onset of infectiousness. Individuals in this latent state are <em>exposed</em>, but not yet infectious.</p>
 <p><span class="math display">\[ 
 \begin{aligned}
@@ -4051,8 +4037,8 @@ div.tocify {
 </div>
 <div id="seir-model-with-vital-dynamics" class="section level2">
 <h2>SEIR model with vital dynamics</h2>
-<div id="htmlwidget-6cc5c35abfc86c47353a" style="width:672px;height:50px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6cc5c35abfc86c47353a">{"x":{"diagram":"digraph rmarkdown {\ngraph[layout = dot, rankdir = LR]\nS\nE\nI\nR\nS -> E -> I -> R\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b5f4c605fff11f296515" style="width:672px;height:50px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b5f4c605fff11f296515">{"x":{"diagram":"digraph rmarkdown {\ngraph[layout = dot, rankdir = LR]\nS\nE\nI\nR\nS -> E -> I -> R\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>Let’s incorporate births and deaths and model the absolute number of individuals in each compartment instead of the proportion. Let <span class="math inline">\(N(t) = S(t) + E(t) + I(t) + R(t)\)</span>. Let <span class="math inline">\(\nu\)</span> be the per-person birth rate, and let <span class="math inline">\(\nu\)</span> be the per-person death rate.</p>
 <p><span class="math display">\[ 
 \begin{aligned}
@@ -4067,8 +4053,8 @@ div.tocify {
 </div>
 <div id="seirs-loss-of-immunity" class="section level2">
 <h2>SEIRS (loss of immunity)</h2>
-<div id="htmlwidget-566db694fb3a4fab3147" style="width:672px;height:100px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-566db694fb3a4fab3147">{"x":{"diagram":"digraph rmarkdown {\ngraph[layout = dot, rankdir = TB]\nS \nE \nI \nR \nS -> E -> I -> R -> S\n\n subgraph subs {\n    rank=\"same\"\n    S\n    E\n    I\n    R\n  }\n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-4124ea8e586bf7985826" style="width:672px;height:100px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4124ea8e586bf7985826">{"x":{"diagram":"digraph rmarkdown {\ngraph[layout = dot, rankdir = TB]\nS \nE \nI \nR \nS -> E -> I -> R -> S\n\n subgraph subs {\n    rank=\"same\"\n    S\n    E\n    I\n    R\n  }\n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p><span class="math display">\[ 
 \begin{aligned}
 \frac{dS}{dt} &amp;= -\beta S(t) I(t) + \sigma R(t) \\
@@ -4082,8 +4068,8 @@ div.tocify {
 </div>
 <div id="example-hiv-care-pipeline" class="section level2">
 <h2>Example: HIV care pipeline</h2>
-<div id="htmlwidget-2302b1a47497c25bf8b4" style="width:672px;height:50px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2302b1a47497c25bf8b4">{"x":{"diagram":"digraph rmarkdown {\ngraph[layout = dot, rankdir = LR]\nA [label=\"HIV+\"]\nB [label=\"Diagnosed\"]\nC [label=\"Linked to care\"]\nD [label=\"ART\"]\nE [label=\"Suppressed\"]\nA -> B\nB -> C \nC -> D \nD -> E \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-20e6950563fe5c9ef3c7" style="width:672px;height:50px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-20e6950563fe5c9ef3c7">{"x":{"diagram":"digraph rmarkdown {\ngraph[layout = dot, rankdir = LR]\nA [label=\"HIV+\"]\nB [label=\"Diagnosed\"]\nC [label=\"Linked to care\"]\nD [label=\"ART\"]\nE [label=\"Suppressed\"]\nA -> B\nB -> C \nC -> D \nD -> E \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p><span class="math display">\[ 
 \begin{aligned}
  \frac{dD}{dt} &amp;= \lambda_D I(t) - (\lambda_L + \mu) D(t) \\
@@ -4117,8 +4103,8 @@ div.tocify {
 </div>
 <div id="pharmacokinetic-models" class="section level2">
 <h2>Pharmacokinetic models</h2>
-<div id="htmlwidget-580650fa79b52d742d94" style="width:672px;height:50px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-580650fa79b52d742d94">{"x":{"diagram":"digraph rmarkdown {\ngraph[layout = dot, rankdir = LR]\nG\nB\nO\nG -> B -> O \n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-05f8d050e24cb5a2c7c9" style="width:672px;height:50px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-05f8d050e24cb5a2c7c9">{"x":{"diagram":"digraph rmarkdown {\ngraph[layout = dot, rankdir = LR]\nG\nB\nO\nG -> B -> O \n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>Let <span class="math inline">\(G(t)\)</span> be the amount of drug in the GI tract, <span class="math inline">\(B(t)\)</span> in the bloodstream, and <span class="math inline">\(O(t)\)</span> in the organ of interest. Let <span class="math inline">\(I(t)\)</span> be the known input dynamics of drug administration (oral, IV, etc).</p>
 <p><span class="math display">\[ 
 \begin{aligned}
@@ -4249,14 +4235,6 @@ div.tocify {
 <li>Simulate the dynamics of the system</li>
 </ol>
 <p>ODEs are most interesting when there are interactions between compartments.</p>
-<hr />
-</div>
-<div id="a-brief-caveat" class="section level2">
-<h2>A brief caveat</h2>
-<p>Modeling with ODEs seems easy – we just write down the rates of the system, then solve it numerically. For most easy-to-specify models you will encounter in public health research, this is a good plan. But it is sometimes possible to specify an ODE system whose solution does not exist.</p>
-<p>Consider a system</p>
-<p><span class="math display">\[ \frac{d y}{dt} = F(y,t) . \]</span></p>
-<p>If <span class="math inline">\(F(y,t)\)</span> is not continuous, a solution may not exist, or it may not be unique.</p>
 </div>
 <div id="navigation" class="section level2">
 <h2>Navigation</h2>
