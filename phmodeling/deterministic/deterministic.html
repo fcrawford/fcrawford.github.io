@@ -3947,7 +3947,7 @@ div.tocify {
 <h2>Overview</h2>
 <p>We begin with deterministic compartmental models, which are usually straightforward to specify. With the right software, they are straightforward to solve. These models find application in virtually every scientific field. In public health, we see them most often in infectious disease epidemiology, cancer biology, pharmaco-kinetics, and healthcare operations research. We will use examples from <span class="citation">Brauer, Castillo-Chavez, and Castillo-Chavez (2001 and others)</span>.</p>
 <p>also here: <a href="https://institutefordiseasemodeling.github.io/Documentation/general/model-seir.html" class="uri">https://institutefordiseasemodeling.github.io/Documentation/general/model-seir.html</a></p>
-<p>The focus here is on specifying systems of ordinary differential equations, not on solving those systems analytically. There is a huge literature on analytic solution – you have probably seen some of this in a calculus or differential equations course – but it’s beyond the scope of this course, which is focused on the modeling part. We will also not focus on qualitative dynamics and equilibrium analysis of DE systems. Instead, we will focus on specification and construction of systems, and using a computer to solve them numerically.</p>
+<p>The focus here is on specifying systems of ordinary differential equations, not on solving those systems analytically.</p>
 </div>
 <div id="examples-of-deterministic-models" class="section level1">
 <h1>Examples of deterministic models</h1>
@@ -4058,7 +4058,7 @@ div.tocify {
 \begin{aligned}
 \frac{dS}{dt} &amp;= \mu N(t) - \nu S(t) -\beta S(t) I(t) \\
  \frac{dE}{dt} &amp;= \beta S(t) I(t) - (\nu + \delta) E(t) \\
- \frac{dI}{dt} &amp;= \delta E(t) - (\nu + )\gamma I(t) \\
+ \frac{dI}{dt} &amp;= \delta E(t) - (\nu + \gamma) I(t) \\
  \frac{dR}{dt} &amp;= \gamma I(t)  - \nu R(t) 
  \end{aligned}
 \]</span></p>
@@ -4078,18 +4078,6 @@ div.tocify {
  \end{aligned}
 \]</span></p>
 <p>When is loss of immunity due to prior infection important? For which diseases?</p>
-<hr />
-</div>
-<div id="lotka-volterra-predator-prey-dynamics-optional" class="section level2">
-<h2>Lotka-Volterra predator-prey dynamics (optional)</h2>
-<p>Let <span class="math inline">\(x(t)\)</span> be the number of prey, and let <span class="math inline">\(y(t)\)</span> be the number of predators.</p>
-<ul>
-<li>Having abundant food, prey reproduce naturally in proportion (<span class="math inline">\(\alpha\)</span>) to their number</li>
-<li>Prey die (are eaten) in proportion (<span class="math inline">\(\beta)\)</span> to the product of their abundance and the number of predators</li>
-<li>Predators reproduce in proportion (<span class="math inline">\(\delta\)</span>) to the product of their number and the number of prey they can eat</li>
-<li>Predators die in proportion to their number</li>
-</ul>
-<p><span class="math display">\[ \frac{dx}{dt} = \alpha x(t) - \beta x(t) y(t) \]</span> <span class="math display">\[ \frac{dy}{dt} = \delta x(t) y(t) - \gamma y(t) \]</span> with initial conditions <span class="math inline">\(x(0)\)</span> and <span class="math inline">\(y(0)\)</span>.</p>
 <hr />
 </div>
 <div id="example-hiv-care-pipeline" class="section level2">
@@ -4115,6 +4103,7 @@ div.tocify {
 </div>
 <div id="drug-use-initiation-and-treatment" class="section level2">
 <h2>Drug use initiation and treatment</h2>
+<p>[add diagram]</p>
 <p>Let <span class="math inline">\(S(t)\)</span> be the proportion of the population who do not use opiates, <span class="math inline">\(D(t)\)</span> the population that do use opiates, and <span class="math inline">\(T(t)\)</span> the proportion in treatment.</p>
 <p><span class="math display">\[ 
 \begin{aligned}
@@ -4134,10 +4123,11 @@ div.tocify {
 <p><span class="math display">\[ 
 \begin{aligned}
  \frac{dG}{dt} &amp;= I(t) - \lambda_G G(t) \\
- \frac{dB}{dt} &amp;= \lambda_G G(t) - \mu_B(t) - \lambda_T B(t)
+ \frac{dB}{dt} &amp;= \lambda_G G(t) - \mu_B(t) - \lambda_T B(t) \\
  \frac{dO}{dt} &amp;= \lambda_T B(t) - \mu_O O(t)
  \end{aligned}
 \]</span></p>
+<p>The <span class="math inline">\(\lambda\)</span> parameters represent rates of transition to the next compartment, and <span class="math inline">\(\mu\)</span> parameters represent rates of clearance.</p>
 </div>
 </div>
 <div id="solving-odes-numerically" class="section level1">
