@@ -1905,7 +1905,7 @@ div.tocify {
 <pre><code>## [1] 1 2 3 4 5</code></pre>
 <div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1"><span class="co"># get the values of x for which that element of y is less than 0.5</span></a>
 <a class="sourceLine" id="cb86-2" data-line-number="2">x[y<span class="op">&lt;</span><span class="fl">0.5</span>]</a></code></pre></div>
-<pre><code>## [1]  1  3  6  7  8 10</code></pre>
+<pre><code>## [1] 1 2 3 4 5 6 7 8</code></pre>
 </div>
 <div id="binding" class="section level3">
 <h3>Binding</h3>
@@ -1963,8 +1963,8 @@ div.tocify {
 <h2>Probability distributions</h2>
 <p>All of the familiar probability distributions are built into R. For any distribution, you can generate random values, evaluate the probability mass function or density, evaluate the cumulative distribution function, or compute quantiles, using similar syntax. For example, to generate <span class="math inline">\(n=10\)</span> independent normally distributed random values with mean 0 and SD 1, use `rnorm</p>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1"><span class="kw">rnorm</span>(<span class="dt">n=</span><span class="dv">10</span>,<span class="dt">mean=</span><span class="dv">0</span>,<span class="dt">sd=</span><span class="dv">1</span>)</a></code></pre></div>
-<pre><code>##  [1] -0.7429698  1.5963817 -1.5973468  0.6611151 -0.4519168  0.7869357
-##  [7]  0.4876210  0.6851931  0.4613762  1.0676666</code></pre>
+<pre><code>##  [1]  0.2243176 -0.1926154  0.3253537 -0.8028464 -1.4558780  1.0185013
+##  [7]  1.0095824  0.1512405 -1.2073413 -0.1194034</code></pre>
 <p>To evaluate the normal density,</p>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1"><span class="kw">dnorm</span>(<span class="dv">0</span>,<span class="dt">mean=</span><span class="dv">0</span>,<span class="dt">sd=</span><span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## [1] 0.3989423</code></pre>
@@ -1987,10 +1987,10 @@ div.tocify {
 <a class="sourceLine" id="cb115-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb115-4" data-line-number="4"><span class="co"># draw one value from x uniformly at random</span></a>
 <a class="sourceLine" id="cb115-5" data-line-number="5"><span class="kw">sample</span>(x,<span class="dv">1</span>)</a></code></pre></div>
-<pre><code>## [1] 10</code></pre>
+<pre><code>## [1] 6</code></pre>
 <div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1"><span class="co"># draw one value from x with probability proportional to its element of `p`</span></a>
 <a class="sourceLine" id="cb117-2" data-line-number="2"><span class="kw">sample</span>(x,<span class="dv">1</span>, <span class="dt">prob=</span>p)</a></code></pre></div>
-<pre><code>## [1] 2</code></pre>
+<pre><code>## [1] 4</code></pre>
 <p>Beware: if <code>x</code> is a scalar, <code>sample</code> will draw instead from the intgegers <code>1:floor(x)</code>.</p>
 <p>By default, if the number of samples desired is greater than 1, <code>sample</code> will draw values <em>without replacement</em>. You can use the argument <code>replace=TRUE</code> to draw samples larger than the number of elements in <code>x</code>.</p>
 </div>
@@ -2015,7 +2015,7 @@ div.tocify {
 <a class="sourceLine" id="cb124-6" data-line-number="6">  y =<span class="st"> &quot;big&quot;</span></a>
 <a class="sourceLine" id="cb124-7" data-line-number="7">}</a>
 <a class="sourceLine" id="cb124-8" data-line-number="8">y</a></code></pre></div>
-<pre><code>## [1] &quot;big&quot;</code></pre>
+<pre><code>## [1] &quot;small&quot;</code></pre>
 </div>
 <div id="loops" class="section level3">
 <h3>Loops</h3>

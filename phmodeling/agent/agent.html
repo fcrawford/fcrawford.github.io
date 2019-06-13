@@ -3873,19 +3873,10 @@ div.tocify {
 <p>All models that generate individual outcomes are agent-based models. Population-based compartmental models just assume that all the agents in the same state are homogeneous. Many statistical models qualify as agent-based models since they represent individual outcomes, incorporate individualistic covariates, and may represent interactions between heterogeneous individuals, or exhibit other complex behavior.</p>
 <p>Researchers often hope that ABMs will exhibit <em>emergent behavior</em>, or complex dynamics that result from the simulation, but are not explicitly represented in the model structure. However, mostly ABMs just do exactly what researchers parameterize them to do.</p>
 </div>
-<div id="example-a-survival-model" class="section level2">
-<h2>Example: a survival model</h2>
-<p>Let <span class="math inline">\(T_i\)</span> be the survival (failure) time of subject <span class="math inline">\(i\)</span> in a trial. We can parameterize the rate, or <em>hazard</em> of failure as</p>
-<p><span class="math display">\[ \lambda_i = \lambda(t) \exp(x_i \beta) \]</span></p>
-<p>where <span class="math inline">\(\lambda(t)\)</span> is a time-varying hazard common to all subjects, and <span class="math inline">\(\exp(x_i \beta)\)</span> is the part that depends on subject <span class="math inline">\(i\)</span>. This is called the <em>Cox Proporitional Hazards Model</em>. This is an agent-based model because the outcomes are specific to each subject/agent.</p>
-</div>
-</div>
-<div id="agent-based-micro-simulation" class="section level1">
-<h1>Agent-based (micro-)simulation</h1>
 <div id="example-sir-model-with-heterogeneity" class="section level2">
 <h2>Example: SIR model with heterogeneity</h2>
-<div id="htmlwidget-cdd80b6c75df9fc06f43" style="width:672px;height:50px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-cdd80b6c75df9fc06f43">{"x":{"diagram":"digraph rmarkdown {\ngraph[layout = dot, rankdir = LR]\nS\nI\nR\nS -> I -> R\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d6746f4dfb1841b9a4e0" style="width:672px;height:50px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d6746f4dfb1841b9a4e0">{"x":{"diagram":"digraph rmarkdown {\ngraph[layout = dot, rankdir = LR]\nS\nI\nR\nS -> I -> R\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>Imagine we have <span class="math inline">\(N\)</span> individuals in a closed SIR model. If <span class="math inline">\(i\)</span> is susceptible, the rate of infection is</p>
 <p><span class="math display">\[ \lambda_i(t) = \beta_i I(t) \]</span></p>
 <p>where <span class="math inline">\(I(t)\)</span> is the number of infectious individuals. If <span class="math inline">\(i\)</span> is infectious, the rate of recovery is <span class="math inline">\(\gamma_i\)</span>. We could parameterize these individualistic rates as folows,</p>
@@ -3903,13 +3894,19 @@ div.tocify {
 </ul>
 <p>Researchers often use ABMs to predict the effect of hypothetical population-level policies before these policies are tested empirically. This can be dangerous, because assumptions about how agents behave in the absence of the intervention, and how the intervention affects their behavior, may lead researchers to draw erroneous conclusions about a situation that has never before occurred.</p>
 <p>It is very easy to understate uncertainty in predictions/inferences from an ABM because ABMs may not capture all sources of stochasticity in the real world.</p>
+<p>For more on this controversy, see: <span class="citation">Marshall and Galea (2014)</span> and citing articles.</p>
 </div>
 <div id="navigation" class="section level2">
 <h2>Navigation</h2>
 <p><a href="../stochastic/stochastic.html">[Back: Stochastic Models]</a> <a href="../index.html">[Home]</a> <a href="../network/network.html">[Next: Network models]</a></p>
 </div>
-<div id="references" class="section level2">
+<div id="references" class="section level2 unnumbered">
 <h2>References</h2>
+<div id="refs" class="references">
+<div id="ref-marshall2014formalizing">
+<p>Marshall, Brandon DL, and Sandro Galea. 2014. “Formalizing the Role of Agent-Based Modeling in Causal Inference and Epidemiology.” <em>American Journal of Epidemiology</em> 181 (2). Oxford University Press: 92–99.</p>
+</div>
+</div>
 </div>
 </div>
 
