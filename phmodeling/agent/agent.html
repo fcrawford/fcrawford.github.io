@@ -3875,8 +3875,8 @@ div.tocify {
 </div>
 <div id="example-sir-model-with-heterogeneity" class="section level2">
 <h2>Example: SIR model with heterogeneity</h2>
-<div id="htmlwidget-d6746f4dfb1841b9a4e0" style="width:672px;height:50px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d6746f4dfb1841b9a4e0">{"x":{"diagram":"digraph rmarkdown {\ngraph[layout = dot, rankdir = LR]\nS\nI\nR\nS -> I -> R\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a715000b796da4de7091" style="width:672px;height:50px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a715000b796da4de7091">{"x":{"diagram":"digraph rmarkdown {\ngraph[layout = dot, rankdir = LR]\nS\nI\nR\nS -> I -> R\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>Imagine we have <span class="math inline">\(N\)</span> individuals in a closed SIR model. If <span class="math inline">\(i\)</span> is susceptible, the rate of infection is</p>
 <p><span class="math display">\[ \lambda_i(t) = \beta_i I(t) \]</span></p>
 <p>where <span class="math inline">\(I(t)\)</span> is the number of infectious individuals. If <span class="math inline">\(i\)</span> is infectious, the rate of recovery is <span class="math inline">\(\gamma_i\)</span>. We could parameterize these individualistic rates as folows,</p>
@@ -3886,13 +3886,16 @@ div.tocify {
 </div>
 <div id="pitfalls-of-abms" class="section level2">
 <h2>Pitfalls of ABMs</h2>
-<p>ABMs can be dangerous because they may seem complex, but are always constrained by their structure, parameterization, and calibration.</p>
+<p>ABMs can be dangerous because they may seem complex, but are constrained by their structure, parameterization, and calibration.</p>
 <ul>
 <li>When ABMs give dynamics similar to those observed in the real world, we don’t always know whether they are capturing the mechanism correctly.<br />
 </li>
 <li>When ABMs give dynamics starkly different from what we see in the real world, we do not always know why.</li>
 </ul>
-<p>Researchers often use ABMs to predict the effect of hypothetical population-level policies before these policies are tested empirically. This can be dangerous, because assumptions about how agents behave in the absence of the intervention, and how the intervention affects their behavior, may lead researchers to draw erroneous conclusions about a situation that has never before occurred.</p>
+</div>
+<div id="pitfalls-of-abms-1" class="section level2">
+<h2>Pitfalls of ABMs</h2>
+<p>Researchers use ABMs to predict the effect of hypothetical population-level policies before these policies are tested empirically. This can be dangerous, because assumptions about how agents behave in the absence of the intervention, and how the intervention affects their behavior, may lead researchers to draw erroneous conclusions about a situation that has never before occurred.</p>
 <p>It is very easy to understate uncertainty in predictions/inferences from an ABM because ABMs may not capture all sources of stochasticity in the real world.</p>
 <p>For more on this controversy, see: <span class="citation">Marshall and Galea (2014)</span> and citing articles.</p>
 </div>
