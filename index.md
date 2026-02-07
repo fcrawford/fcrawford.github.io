@@ -1,11 +1,14 @@
 ---
 ---
 
+I'm [Forrest W. Crawford](www.crawfordlab.io). Semiparametric LLC is my consultancy.  
 
-Welcome {% assign date = '2020-04-13T10:20:00Z' %}
+Contact me for availability and rates. 
 
-- Original date - {{ date }}
-- With timeago filter - {{ date | timeago }}`
+Email: -
+[Linkedin](www.linkedin.com/in/forrest-w-crawford/)
+
+
 
 
 
