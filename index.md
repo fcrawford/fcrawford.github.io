@@ -4,9 +4,9 @@
 I'm [Forrest W. Crawford](https://www.crawfordlab.io). Semiparametric LLC is my consultancy.  
 Contact me for availability and rates. 
 
-Email: -
+Email: [semiparametricllc@proton.me](mailto:semiparametricllc@proton.me)
 
-[Linkedin](https://www.linkedin.com/in/forrest-w-crawford/)
+[LinkedIn](https://www.linkedin.com/in/forrest-w-crawford/)
 
 
 
